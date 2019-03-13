@@ -3,6 +3,7 @@ import './NotificationWidget.css';
 import SingleNotification from "./SingleNotification";
 
 export interface Props {
+    newNotification: boolean
 }
 
 interface State {
@@ -27,29 +28,43 @@ class NotificationWidget extends React.Component<Props, State> {
         this.notificationCounter = 0;
     }
 
-    onAddSingleNotification(): void {
+    componentDidUpdate(prevProps: Props, prevState: State) {
+        // function triggered when a state property changes
+        // here when we click on the button
+        // this.addSingleNotification();
+
+        console.log(`prevProps`, prevProps, `newProp`, this.props.newNotification)
+
+        // To avoid an infinite loop
+        if (prevProps.newNotification !== this.props.newNotification) {
+            this.addSingleNotification();
+        }
+    }
+
+    addSingleNotification(): void {
         console.log(`add single notification`)
-        const message = "shut down your browser please";
-        const position = "top left";
-        const type = "alert";
-        const notification = new SingleNotification(
-            {
-                message: message,
-                position: position,
-                type: type,
-                key: String(this.notificationCounter)
-            });
+        // const message = "shut down your browser please";
+        // const position = "top left";
+        // const type = "alert";
+        const notification = (
+            <SingleNotification
+                message={"hello"}
+                position={"top right"}
+                type={"alert"}
+                key={String(this.notificationCounter)}
+            />
+        );
 
         this.updateNotificationList(notification);
     }
 
-    updateNotificationList(notification: SingleNotification): void {
+    updateNotificationList(notification: any): void {
 
         console.log('update notification list')
 
         // We increment the counter so that the key of each notification will always be different
         this.notificationCounter++;
-
+        //
         // Add the notification into the array
         this.notificationsToShow.push(notification);
 
@@ -58,8 +73,6 @@ class NotificationWidget extends React.Component<Props, State> {
         // Update the state parameter so that it will automatically re-render the component
         this.setState( {
             notificationList: this.notificationsToShow
-        }, () => {
-            console.log('I updated the state')
         });
 
     }
@@ -68,13 +81,9 @@ class NotificationWidget extends React.Component<Props, State> {
         console.log(`I am rendering, here is the notificationList`, this.notificationsToShow);
         return (
             <section id="all-notifications">
-                {(this.state.notificationList || []).map((notification) => (
-                    <SingleNotification
-                        message={notification.props.message}
-                        position={notification.props.position}
-                        type={notification.props.type}
-                        key={String(this.notificationCounter)}
-                    />
+                {(this.state.notificationList || []).map((notif) => (
+                    <div>New notification</div>
+                    // this.state.notificationList[notif]
                 ))}
             </section>
         )

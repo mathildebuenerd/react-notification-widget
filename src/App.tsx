@@ -3,8 +3,6 @@ import './App.css';
 
 // Import the components
 import NotificationWidget from './components/NotificationWidget';
-const notificationWidget = new NotificationWidget({notificationList: []});
-// import SingleNotification from './components/SingleNotification';
 
 interface Props {
 
@@ -22,19 +20,29 @@ class App extends React.Component<Props, State> {
     }
 
     addNotification() {
-        notificationWidget.onAddSingleNotification();
+
+        // Toggle the state
+        if (this.state.showNotification) {
+            this.setState({showNotification: false});
+        } else {
+            this.setState({showNotification: true});
+        }
+
     }
 
 
     public render() {
         return (
             <section>
-                <NotificationWidget />
-
+                <NotificationWidget newNotification={this.state.showNotification} />
                 <h1>React Notification Widget</h1>
                 <section>
                     <h2>Controls</h2>
-                    <button type="button" onClick={this.addNotification}>Add Notification</button>
+                    <button
+                        type="button"
+                        onClick={this.addNotification.bind(this)}>
+                        Add Notification
+                    </button>
                 </section>
             </section>
         );
