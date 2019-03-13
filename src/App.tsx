@@ -1,22 +1,44 @@
 import * as React from 'react';
 import './App.css';
 
-import logo from './logo.svg';
+// Import the components
+import NotificationWidget from './components/NotificationWidget';
+const notificationWidget = new NotificationWidget({notificationList: []});
+// import SingleNotification from './components/SingleNotification';
 
-class App extends React.Component {
-  public render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+interface Props {
+
+}
+
+interface State {
+    showNotification: boolean;
+}
+
+class App extends React.Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {showNotification: false}
+    }
+
+    addNotification() {
+        notificationWidget.onAddSingleNotification();
+    }
+
+
+    public render() {
+        return (
+            <section>
+                <NotificationWidget />
+
+                <h1>React Notification Widget</h1>
+                <section>
+                    <h2>Controls</h2>
+                    <button type="button" onClick={this.addNotification}>Add Notification</button>
+                </section>
+            </section>
+        );
+    }
 }
 
 export default App;
