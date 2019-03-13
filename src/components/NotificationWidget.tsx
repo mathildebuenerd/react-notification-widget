@@ -46,14 +46,12 @@ class NotificationWidget extends React.Component<Props, State> {
         // const message = "shut down your browser please";
         // const position = "top left";
         // const type = "alert";
-        const notification = (
-            <SingleNotification
-                message={"hello"}
-                position={"top right"}
-                type={"alert"}
-                key={String(this.notificationCounter)}
-            />
-        );
+        const notification = {
+            message: "hello",
+            position: "top right",
+            type: "alert",
+            key: String(this.notificationCounter)
+        };
 
         this.updateNotificationList(notification);
     }
@@ -81,9 +79,13 @@ class NotificationWidget extends React.Component<Props, State> {
         console.log(`I am rendering, here is the notificationList`, this.notificationsToShow);
         return (
             <section id="all-notifications">
-                {(this.state.notificationList || []).map((notif) => (
-                    <div>New notification</div>
-                    // this.state.notificationList[notif]
+                {(this.state.notificationList || []).map((notification) => (
+                    <SingleNotification
+                        message={notification.message}
+                        position={notification.position}
+                        type={notification.type}
+                        key={notification.key}
+                    />
                 ))}
             </section>
         )

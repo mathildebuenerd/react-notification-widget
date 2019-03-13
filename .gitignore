@@ -22,4 +22,5 @@ yarn-error.log*
 
 # Webstorm files
 .idea
-workspace.xml
+.idea/workspace.xml
+
