@@ -3,6 +3,7 @@ import './App.css';
 
 // Import the components
 import NotificationWidget from './components/NotificationWidget';
+import Form from './components/Form';
 
 interface Props {
 
@@ -10,13 +11,21 @@ interface Props {
 
 interface State {
     showNotification: boolean;
+    formData: {
+        message: string
+    }
 }
 
 class App extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.state = {showNotification: false}
+        this.state = {
+            showNotification: false,
+            formData: {
+                message: ""
+            }
+        }
     }
 
     addNotification() {
@@ -30,20 +39,31 @@ class App extends React.Component<Props, State> {
 
     }
 
+    handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        // By default, we can't type into a form
+        const value: string = e.target.value;
+
+        this.setState(prevState => ({
+            formData: {
+                ...prevState.formData, message: value
+            }
+        }));
+    };
+
 
     public render() {
         return (
             <section>
-                <NotificationWidget newNotification={this.state.showNotification} />
+                <NotificationWidget
+                    newNotification={this.state.showNotification}
+                    message={this.state.formData.message || `You haven't written a message`}
+                />
                 <h1>React Notification Widget</h1>
-                <section>
-                    <h2>Controls</h2>
-                    <button
-                        type="button"
-                        onClick={this.addNotification.bind(this)}>
-                        Add Notification
-                    </button>
-                </section>
+                <Form
+                    handleChange={this.handleChange.bind(this)}
+                    handleSubmit={this.addNotification.bind(this)}
+                    formData={this.state.formData}
+                />
             </section>
         );
     }

@@ -3,7 +3,8 @@ import './NotificationWidget.css';
 import SingleNotification from "./SingleNotification";
 
 export interface Props {
-    newNotification: boolean
+    newNotification: boolean,
+    message: string
 }
 
 interface State {
@@ -23,7 +24,6 @@ class NotificationWidget extends React.Component<Props, State> {
             notificationList: []
         };
 
-
         // Create a counter in order to give a unique key to each notification in the list
         this.notificationCounter = 0;
     }
@@ -33,21 +33,21 @@ class NotificationWidget extends React.Component<Props, State> {
         // here when we click on the button
         // this.addSingleNotification();
 
-        console.log(`prevProps`, prevProps, `newProp`, this.props.newNotification)
+        // console.log(`prevProps`, prevProps, `newProp`, this.props.newNotification)
 
         // To avoid an infinite loop
         if (prevProps.newNotification !== this.props.newNotification) {
-            this.addSingleNotification();
+            this.addSingleNotification(prevProps.message);
         }
     }
 
-    addSingleNotification(): void {
+    addSingleNotification(message: string): void {
         console.log(`add single notification`)
         // const message = "shut down your browser please";
         // const position = "top left";
         // const type = "alert";
         const notification = {
-            message: "hello",
+            message: message,
             position: "top right",
             type: "alert",
             key: String(this.notificationCounter)
