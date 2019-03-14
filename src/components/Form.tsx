@@ -3,10 +3,12 @@ import * as React from 'react';
 import './Form.css';
 
 interface Props {
+    handleMessageChange: any,
+    handlePositionChange: any,
     handleSubmit: any,
-    handleChange: any,
     formData: {
-        message: string
+        message: string,
+        position: string
     }
 }
 
@@ -18,6 +20,7 @@ class Form extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
+        this.props.formData.position = "top-left";
         this.state = {
             validate: false
         };
@@ -28,32 +31,70 @@ class Form extends React.Component<Props, State> {
             <section>
                 <h2>Controls</h2>
                 <form>
-                    <label>Message
-                        <input
-                            onChange={this.props.handleChange}
-                            type="text"
-                            value={this.props.formData.message}
-                            placeholder="Type your message"
-                        />
-                    </label>
-                    <button
-                        id="good-news"
-                        type="button"
-                        onClick={this.props.handleSubmit}>
-                        Show good news
-                    </button>
-                    <button
-                        id="alert"
-                        type="button"
-                        onClick={this.props.handleSubmit}>
-                        Show alert
-                    </button>
-                    <button
-                        id="problem"
-                        type="button"
-                        onClick={this.props.handleSubmit}>
-                        Show problem
-                    </button>
+                    <section id="choose-message">
+                        <h3>What message do you want?</h3>
+                        <label>Message
+                            <input
+                                onChange={this.props.handleMessageChange}
+                                type="text"
+                                value={this.props.formData.message}
+                                placeholder="Type your message"
+                            />
+                        </label>
+                    </section>
+
+
+                    <section id="choose-position">
+                        <h3>Where do you want the notification to show?</h3>
+                        <label>
+                            Top left
+                            <input type="radio" name="position" value="top-left" id="top-left"
+                                   checked={this.props.formData.position === "top-left"}
+                                   onChange={this.props.handlePositionChange} />
+                        </label>
+                        <label>
+                            Top right
+                            <input type="radio" name="position" value="top-right" id="top-right"
+                                   checked={this.props.formData.position === "top-right"}
+                                   onChange={this.props.handlePositionChange} />
+                        </label>
+                        <label>
+                            Bottom left
+                            <input type="radio" name="position" value="bottom-left" id="bottom-left"
+                                   checked={this.props.formData.position === "bottom-left"}
+                                   onChange={this.props.handlePositionChange} />
+                        </label>
+                        <label>
+                            Bottom right
+                            <input type="radio" name="position" value="bottom-right" id="bottom-right"
+                                   checked={this.props.formData.position === "bottom-right"}
+                                   onChange={this.props.handlePositionChange} />
+                        </label>
+
+                    </section>
+
+                    <section id="choose-type">
+                        <h3>What kind of notification?</h3>
+                        <button
+                            id="good-news"
+                            type="button"
+                            onClick={this.props.handleSubmit}>
+                            Show good news
+                        </button>
+                        <button
+                            id="alert"
+                            type="button"
+                            onClick={this.props.handleSubmit}>
+                            Show alert
+                        </button>
+                        <button
+                            id="problem"
+                            type="button"
+                            onClick={this.props.handleSubmit}>
+                            Show problem
+                        </button>
+                    </section>
+
                 </form>
             </section>
         )
