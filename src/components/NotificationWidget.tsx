@@ -10,7 +10,14 @@ export interface Props {
 }
 
 interface State {
-    notificationList: Array<any>
+    notificationList:
+        Array<{
+            message: string,
+            position: string,
+            type: string,
+            key: string
+        }>;
+
 }
 
 class NotificationWidget extends React.Component<Props, State> {
@@ -42,10 +49,7 @@ class NotificationWidget extends React.Component<Props, State> {
     }
 
     addSingleNotification(message: string, type: string, position: string): void {
-        console.log(`add single notification`)
-        // const message = "shut down your browser please";
-        // const position = "top left";
-        // const type = "alert";
+
         const notification = {
             message: message,
             position: position,
@@ -76,17 +80,31 @@ class NotificationWidget extends React.Component<Props, State> {
     }
 
     render() {
-        console.log(`I am rendering, here is the notificationList`, this.notificationsToShow);
+
+        // List of all possible positions
+        const positionList = ['top-left', 'bottom-left', 'top-right', 'bottom-right'];
+
         return (
             <section id="all-notifications">
-                {(this.state.notificationList || []).map((notification) => (
-                    <SingleNotification
-                        message={notification.message}
-                        position={notification.position}
-                        type={notification.type}
-                        key={notification.key}
-                    />
-                ))}
+                {
+                    positionList.map((position, index) => (
+                        // Create a container for each position of notification
+                        <div className="notification-area" id={position} key={index}>
+                            {(this.state.notificationList || []).map(notification => {
+                                // If we are in the right container, we show the component
+                                // If not, we return empty
+                                if (position === notification.position) {
+                                    return <SingleNotification
+                                        message={notification.message}
+                                        position={notification.position}
+                                        type={notification.type}
+                                        key={notification.key}
+                                    />
+                                } else return ''
+                            })}
+                        </div>
+                    ))
+                }
             </section>
         )
     }

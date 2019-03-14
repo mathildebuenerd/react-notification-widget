@@ -1,0 +1,23 @@
+.notification-area {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    pointer-events: none;
+    display:flex;
+}
+
+#top-left, #top-right {
+    flex-direction: column;
+}
+
+#bottom-left, #bottom-right {
+    flex-direction: column-reverse;
+}
+
+#top-right, #bottom-right {
+    align-items: end;
+}
+
+
