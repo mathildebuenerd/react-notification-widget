@@ -84,7 +84,7 @@ class App extends React.Component<Props, State> {
 
     public render() {
         return (
-            <section>
+            <section role="main">
                 <NotificationWidget
                     newNotification={this.state.showNotification}
                     message={this.state.formData.message || `You haven't written a message`}

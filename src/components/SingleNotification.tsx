@@ -22,7 +22,7 @@ class SingleNotification extends React.Component<Props, State> {
     // Setting default duration time
     // https://stackoverflow.com/questions/37282159/default-property-value-in-react-component-using-typescript
     public static defaultProps = {
-        duration: 10000
+        duration: 5000
     }
 
     constructor(props: Props) {
@@ -36,9 +36,9 @@ class SingleNotification extends React.Component<Props, State> {
         const classNames = `notification ${position} ${type}`;
         return (
             <div className={classNames}>
-                <span>Message: {message}</span>
-                <span>Position: {position}</span>
-                <span>Type: {type}</span>
+                <p className="text-notif">
+                    {message}
+                </p>
             </div>
         )
     }

@@ -1,0 +1,49 @@
+#choose-message label,
+#choose-position,
+#choose-type {
+    display: flex;
+    flex-direction: column;
+}
+
+#choose-message input {
+    width: 300px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid lightgrey;
+    font-size: 1em;
+}
+
+/* Radio inputs */
+#choose-position label {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid lightgrey;
+    cursor: pointer;
+}
+
+#choose-position .icon-arrow {
+    margin-right: 8px;
+    font-size: 1.3em;
+}
+
+/*
+   Buttons
+*/
+#choose-type button {
+    width: 200px;
+    padding: 15px 10px;
+    margin-bottom: 10px;
+    border: none;
+    box-shadow: 0 3px 5px lightgrey;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#good-news {background-color: #64A6E1}
+#alert {background-color: #F9953F}
+#problem {background-color: #EF5842}
+

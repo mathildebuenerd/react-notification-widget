@@ -20,7 +20,7 @@ class Form extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        this.props.formData.position = "top-left";
+        this.props.formData.position = "bottom-right";
         this.state = {
             validate: false
         };
@@ -28,7 +28,7 @@ class Form extends React.Component<Props, State> {
 
     public render() {
         return(
-            <section>
+            <section id="controls">
                 <h2>Controls</h2>
                 <form>
                     <section id="choose-message">
@@ -47,25 +47,33 @@ class Form extends React.Component<Props, State> {
                     <section id="choose-position">
                         <h3>Where do you want the notification to show?</h3>
                         <label>
-                            Top left
+                            <span className="position-label">
+                                <span className="icon-arrow" aria-hidden>↖️</span>️Top left
+                            </span>
                             <input type="radio" name="position" value="top-left" id="top-left"
                                    checked={this.props.formData.position === "top-left"}
                                    onChange={this.props.handlePositionChange} />
                         </label>
                         <label>
-                            Top right
+                            <span className="position-label">
+                                <span className="icon-arrow" aria-hidden>↗️</span>Top right
+                            </span>
                             <input type="radio" name="position" value="top-right" id="top-right"
                                    checked={this.props.formData.position === "top-right"}
                                    onChange={this.props.handlePositionChange} />
                         </label>
                         <label>
-                            Bottom left
+                            <span className="position-label">
+                                <span className="icon-arrow" aria-hidden>↙️</span>Bottom left
+                            </span>
                             <input type="radio" name="position" value="bottom-left" id="bottom-left"
                                    checked={this.props.formData.position === "bottom-left"}
                                    onChange={this.props.handlePositionChange} />
                         </label>
                         <label>
-                            Bottom right
+                            <span className="position-label">
+                                <span className="icon-arrow" aria-hidden>↘️</span>Bottom right
+                            </span>
                             <input type="radio" name="position" value="bottom-right" id="bottom-right"
                                    checked={this.props.formData.position === "bottom-right"}
                                    onChange={this.props.handlePositionChange} />

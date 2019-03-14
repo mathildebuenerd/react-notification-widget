@@ -1,0 +1,23 @@
+* {
+    font-family: "Roboto", arial, sans-serif;
+}
+
+
+[role="main"] {
+    max-width: 80vw;
+    padding: 20px 50px;
+}
+
+/* Typographic grey*/
+h1 {
+    font-size: 3em;
+    color: #222;
+}
+
+h2, h3 {
+    color: #333
+}
+
+p, label {
+    color: #555
+}

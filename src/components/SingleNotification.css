@@ -1,9 +1,31 @@
+/*
+    For all notifications
+    */
+
 .notification {
     width: 200px;
     margin: 10px;
     padding: 15px;
     box-sizing: border-box;
-    background-color: #eee;
-    box-shadow: 0 5px 5px #ccc;
+    box-shadow: 0 3px 3px #ccc;
+    background-color: rgba(240,240,240,0.95);
 }
+
+.notification::before {
+    display: flex;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+
+.notification.good-news { border-left: 5px solid #64A6E1}
+.notification.alert { border-left: 5px solid #F9953F}
+.notification.problem { border-left: 5px solid #EF5842}
+
+
+/*Notification titles*/
+.notification.good-news::before {content: "Good news! 😁";}
+.notification.alert::before {content: "Be careful! 😱";}
+.notification.problem::before {content: "Something is going wrong... 😢";}
+
 
