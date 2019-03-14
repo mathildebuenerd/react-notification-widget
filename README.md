@@ -2,6 +2,13 @@
 
 A simple notification widget made with React.
 
+## Preview
+
+![Preview](https://i.ibb.co/gR5CML3/Screenshot-2019-03-14-React-App-1.png)
+
+## Usage
+Run with `npm run start`
+
 ## About
 Setup following the [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter).
 
